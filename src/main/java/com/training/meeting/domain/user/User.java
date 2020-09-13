@@ -42,6 +42,9 @@ public class User extends BaseEntity implements UserDetails, CredentialsContaine
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private Set<Role> roles = Set.of();
 
+    @OneToMany(mappedBy = "user")
+    private Set<Notification> notifications = Set.of();
+
     @Builder.Default
     private Boolean accountNonExpired = true;
 
