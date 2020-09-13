@@ -42,8 +42,16 @@ public class User extends BaseEntity implements UserDetails, CredentialsContaine
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private Set<Role> roles = Set.of();
 
+    @Builder.Default
     @OneToMany(mappedBy = "user")
     private Set<Notification> notifications = Set.of();
+
+    @Builder.Default
+    @ManyToMany( cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinTable(name = "user_tag",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "id")})
+    private Set<Tag> interestedCategories = Set.of();
 
     @Builder.Default
     private Boolean accountNonExpired = true;
