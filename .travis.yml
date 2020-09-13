@@ -10,6 +10,11 @@ cache:
   directories:
     - $HOME/.m2
 
+services: mysql
+
+before_script:
+  - mysql -e 'DROP DATABASE IF EXISTS meeting_project;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS meeting_project;'
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
