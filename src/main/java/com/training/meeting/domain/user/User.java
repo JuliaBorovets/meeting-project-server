@@ -47,11 +47,25 @@ public class User extends BaseEntity implements UserDetails, CredentialsContaine
     private Set<Notification> notifications = Set.of();
 
     @Builder.Default
-    @ManyToMany( cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(name = "user_tag",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "id")})
     private Set<Tag> interestedCategories = Set.of();
+
+    @Builder.Default
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinTable(name = "organizer_organisation",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "organisation_id", referencedColumnName = "id")})
+    private Set<Organisation> organisationOrganizer = Set.of();
+
+    @Builder.Default
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinTable(name = "participant_organisation",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "organisation_id", referencedColumnName = "id")})
+    private Set<Organisation> organisationParticipant = Set.of();
 
     @Builder.Default
     private Boolean accountNonExpired = true;
