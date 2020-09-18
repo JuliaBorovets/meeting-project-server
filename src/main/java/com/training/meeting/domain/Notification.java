@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "notifications")
+@Table(name = "notification")
 public class Notification extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)

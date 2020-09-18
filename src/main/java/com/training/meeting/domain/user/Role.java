@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "roles")
+@Table(name = "role")
 public class Role extends BaseEntity {
 
     private String name;

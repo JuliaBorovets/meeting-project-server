@@ -1,9 +1,6 @@
 package com.training.meeting.domain.user;
 
-import com.training.meeting.domain.BaseEntity;
-import com.training.meeting.domain.Notification;
-import com.training.meeting.domain.Organisation;
-import com.training.meeting.domain.Tag;
+import com.training.meeting.domain.*;
 import lombok.*;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,7 +18,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "users")
+@Table(name = "user")
 public class User extends BaseEntity implements UserDetails, CredentialsContainer {
 
     @Column(name = "email", unique = true)
@@ -69,6 +66,9 @@ public class User extends BaseEntity implements UserDetails, CredentialsContaine
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "organisation_id", referencedColumnName = "id")})
     private Set<Organisation> organisationParticipant = Set.of();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Location location;
 
     @Builder.Default
     private Boolean accountNonExpired = true;

@@ -4,10 +4,11 @@ import com.training.meeting.domain.event.Event;
 import com.training.meeting.domain.user.User;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
@@ -16,18 +17,18 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "tag")
-public class  Tag  extends BaseEntity {
+@Table(name = "location")
+public class Location extends BaseEntity {
 
-    private String name;
+    private String country;
+
+    private String city;
 
     @Builder.Default
-    @ManyToMany(mappedBy = "interestedCategories")
-    private Set<User> users = Set.of();
+    @OneToMany(mappedBy = "location")
+    private List<User> users = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(name = "tag_event",
-            joinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "event_id", referencedColumnName = "id")})
+    @Builder.Default
+    @OneToMany(mappedBy = "location")
     private List<Event> events = new ArrayList<>();
 }

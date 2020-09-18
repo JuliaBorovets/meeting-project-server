@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "organisation_comments")
+@Table(name = "organisation_comment")
 public class OrganisationComment extends BaseComment {
 
     @ManyToOne(fetch = FetchType.LAZY)

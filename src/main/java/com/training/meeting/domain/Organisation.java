@@ -1,11 +1,14 @@
 package com.training.meeting.domain;
 
 import com.training.meeting.domain.comment.OrganisationComment;
+import com.training.meeting.domain.event.Event;
 import com.training.meeting.domain.reaction.OrganisationReaction;
 import com.training.meeting.domain.user.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -15,7 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "organisations")
+@Table(name = "organisation")
 public class Organisation extends BaseEntity {
 
     private String name;
@@ -38,12 +41,14 @@ public class Organisation extends BaseEntity {
 
     @Builder.Default
     @OneToMany(mappedBy = "organisation", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<OrganisationComment> organisationComments = Set.of();
+    private List<OrganisationComment> organisationComments = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "organisation", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<OrganisationReaction> organisationReactions = Set.of();
+    private List<OrganisationReaction> organisationReactions = new ArrayList<>();
 
-    //private Set<Event> events = Set.of();
+    @Builder.Default
+    @OneToMany(mappedBy = "organisation")
+    private List<Event> events = new ArrayList<>();
 
 }

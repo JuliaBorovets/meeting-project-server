@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-@Table(name = "authorities")
+@Table(name = "authority")
 public class Authority extends BaseEntity {
 
     private String permission;

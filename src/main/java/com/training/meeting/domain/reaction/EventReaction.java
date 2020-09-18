@@ -1,6 +1,6 @@
 package com.training.meeting.domain.reaction;
 
-import com.training.meeting.domain.Event;
+import com.training.meeting.domain.event.Event;
 import lombok.*;
 
 import javax.persistence.Entity;

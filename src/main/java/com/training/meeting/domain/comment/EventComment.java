@@ -1,6 +1,6 @@
 package com.training.meeting.domain.comment;
 
-import com.training.meeting.domain.Event;
+import com.training.meeting.domain.event.Event;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "event_comments")
+@Table(name = "event_comment")
 public class EventComment extends BaseComment{
 
     @ManyToOne(fetch = FetchType.LAZY)

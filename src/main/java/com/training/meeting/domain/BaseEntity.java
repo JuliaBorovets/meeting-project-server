@@ -16,6 +16,6 @@ public abstract class BaseEntity {
 
     @CreationTimestamp
     @Column(updatable = false)
-    private Timestamp createdDate;
+    private Timestamp creationDate;
 
 }

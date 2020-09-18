@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @Entity
-@Table(name = "profiles")
+@Table(name = "profile")
 public class Profile extends BaseEntity {
 
     @OneToOne(mappedBy = "profile")
