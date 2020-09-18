@@ -1,12 +1,10 @@
-package com.training.meeting.domain.user;
+package com.training.meeting.domain.reaction;
 
 import com.training.meeting.domain.BaseEntity;
 import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
@@ -15,14 +13,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "tags")
-public class  Tag  extends BaseEntity {
+@Table(name = "rating")
+public class Rating extends BaseEntity {
 
     private String name;
+    private int score;
 
-    @Builder.Default
-    @ManyToMany(mappedBy = "interestedCategories")
-    private Set<User> users = Set.of();
-
-  //  private Set<Event> events = Set.of();
 }

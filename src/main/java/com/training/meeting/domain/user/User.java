@@ -1,6 +1,9 @@
 package com.training.meeting.domain.user;
 
 import com.training.meeting.domain.BaseEntity;
+import com.training.meeting.domain.Notification;
+import com.training.meeting.domain.Organisation;
+import com.training.meeting.domain.Tag;
 import lombok.*;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;

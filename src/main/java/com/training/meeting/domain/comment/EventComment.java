@@ -1,9 +1,10 @@
-package com.training.meeting.domain.user;
+package com.training.meeting.domain.comment;
 
-import com.training.meeting.domain.BaseEntity;
+import com.training.meeting.domain.Event;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -14,13 +15,9 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "notifications")
-public class Notification extends BaseEntity {
+@Table(name = "event_comments")
+public class EventComment extends BaseComment{
 
-    @ManyToOne
-    private User user;
-
-    private String text;
-
-    private Boolean isRead;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Event event;
 }

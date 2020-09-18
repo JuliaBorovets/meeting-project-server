@@ -1,12 +1,11 @@
-package com.training.meeting.domain.user;
+package com.training.meeting.domain;
 
-import com.training.meeting.domain.BaseEntity;
+import com.training.meeting.domain.comment.OrganisationComment;
+import com.training.meeting.domain.reaction.OrganisationReaction;
+import com.training.meeting.domain.user.User;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 @Data
@@ -29,17 +28,22 @@ public class Organisation extends BaseEntity {
     @Lob
     private Byte[] photo;
 
+    @Builder.Default
     @ManyToMany(mappedBy = "organisationOrganizer")
     private Set<User> organizers = Set.of();
 
+    @Builder.Default
     @ManyToMany(mappedBy = "organisationParticipant")
     private Set<User> participants = Set.of();
 
+    @Builder.Default
+    @OneToMany(mappedBy = "organisation", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OrganisationComment> organisationComments = Set.of();
 
-    //private Set<OrganisationComment> organisationComments = Set.of();
-
-    //private Set<OrganisationReaction> organisationReactions = Set.of();
+    @Builder.Default
+    @OneToMany(mappedBy = "organisation", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OrganisationReaction> organisationReactions = Set.of();
 
     //private Set<Event> events = Set.of();
-    
+
 }
