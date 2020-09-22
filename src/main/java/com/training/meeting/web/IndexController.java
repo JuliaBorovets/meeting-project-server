@@ -1,8 +1,12 @@
 package com.training.meeting.web;
 
+import com.training.meeting.domain.user.User;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -12,7 +16,8 @@ public class IndexController {
     }
 
     @GetMapping("/test")
-    public String test(){
-        return "index";
+    public String test(@AuthenticationPrincipal User user){
+        log.info(user.getUsername() + "------------------");
+        return "test";
     }
 }

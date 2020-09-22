@@ -29,7 +29,10 @@ public class MeetingBootstrap implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-       // loadSecurityData();
+
+       if (userRepository.count() == 0){
+           loadSecurityData();
+       }
     }
 
     private void loadSecurityData() {

@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Test</title>
 </head>
 <body>
 <h1>Hello World!</h1>
+
+<div class="row" >
+    <div class="col-md-12">
+        <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']?.message} == 'Bad credentials'" class="alert alert-danger">Invalid Username or Password</div>
+
+        <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']?.message} == 'User account is locked'" class="alert alert-danger">User Account is Locked.</div>
+
+        <div th:if="${param.logout}" class="alert alert-success">You Have Logged Out</div>
+        <form th:action="@{/login}" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" autofocus="true" autocomplete="off">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" autofocus="true" autocomplete="off">
+            <input type="submit" value="Log In">
+            <label for="remember-me">Remember Me:</label>
+            <input type="checkbox" id="remember-me" name="remember-me" />
+        </form>
+    </div>
+</div>
 </body>
 </html>
+
 
