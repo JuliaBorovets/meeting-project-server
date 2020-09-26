@@ -1,9 +1,9 @@
 package com.training.meeting.bootstrap;
 
 import com.training.meeting.domain.user.Authority;
-import com.training.meeting.domain.user.Profile;
 import com.training.meeting.domain.user.Role;
 import com.training.meeting.domain.user.User;
+import com.training.meeting.domain.user.UserProfile;
 import com.training.meeting.repository.user.AuthorityRepository;
 import com.training.meeting.repository.user.RoleRepository;
 import com.training.meeting.repository.user.UserRepository;
@@ -14,8 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -30,34 +28,45 @@ public class MeetingBootstrap implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-       if (userRepository.count() == 0){
-           loadSecurityData();
-       }
+        if (userRepository.count() == 0) {
+            loadSecurityData();
+        }
     }
 
     private void loadSecurityData() {
 
-        Authority create = authorityRepository.save(Authority.builder().permission("create").build());
-        Authority read = authorityRepository.save(Authority.builder().permission("read").build());
-        Authority update = authorityRepository.save(Authority.builder().permission("update").build());
-        Authority delete = authorityRepository.save(Authority.builder().permission("delete").build());
+        Authority userCreate = authorityRepository.save(Authority.builder().permission("user.create").build());
+        Authority userUpdate = authorityRepository.save(Authority.builder().permission("user.update").build());
+        Authority userDelete = authorityRepository.save(Authority.builder().permission("user.delete").build());
 
         Role adminRole = roleRepository.save(Role.builder().name("ADMIN").build());
         Role userRole = roleRepository.save(Role.builder().name("USER").build());
 
-        adminRole.setAuthorities(new HashSet<>(Set.of(create, read, update, delete)));
 
-        userRole.setAuthorities(new HashSet<>(Set.of(read)));
+        userRole.getAuthorities().addAll(Arrays.asList(userCreate, userUpdate));
+        adminRole.getAuthorities().addAll(Arrays.asList(userCreate, userUpdate, userDelete));
 
         roleRepository.saveAll(Arrays.asList(adminRole, userRole));
 
-        userRepository.save(User.builder()
+        User user = User.builder()
                 .username("user")
                 .password(passwordEncoder.encode("password"))
-                .roles(Set.of(adminRole))
-                .email("email")
-                .profile(Profile.builder().build())
-                .build());
+                .email("useremail@gmail.com")
+                .userProfile(UserProfile.builder().build())
+                .build();
+        user.getRoles().add(userRole);
+
+        User admin = User.builder()
+                .username("admin")
+                .password(passwordEncoder.encode("password"))
+                .email("adminemail@gmail.com")
+                .userProfile(UserProfile.builder().build())
+                .build();
+        admin.getRoles().add(userRole);
+        admin.getRoles().add(adminRole);
+
+        userRepository.save(user);
+        userRepository.save(admin);
 
         log.info("Users Loaded: " + userRepository.count());
     }
