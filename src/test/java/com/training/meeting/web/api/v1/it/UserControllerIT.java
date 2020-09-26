@@ -1,5 +1,6 @@
 package com.training.meeting.web.api.v1.it;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.training.meeting.repository.user.UserRepository;
 import com.training.meeting.service.UserService;
 import com.training.meeting.web.api.v1.UserController;
@@ -8,33 +9,67 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static com.training.meeting.web.api.v1.AbstractRestControllerTest.asJsonString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-public class UserControllerIT extends BaseIT {
+public class UserControllerIT extends BaseIT{
+    @Autowired
+    ObjectMapper objectMapper;
 
     @Autowired
     UserService userService;
 
     @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
     UserRepository userRepository;
 
-    UserDto userDto = UserDto.builder().username("username").password("password").email("email").build();
+    UserDto userDto = UserDto.builder()
+            .id(1L)
+            .email("email")
+            .password("password")
+            .username("user")
+           // .userProfile(UserProfileDto.builder().build())
+            .build();
 
-    @Transactional
     @Test
-    public void createUser() throws Exception {
-        mockMvc.perform(post(UserController.BASE_URL + "/reg")
+    void shouldUpdateUserProfileWithUserRole() throws Exception {
+
+        mockMvc.perform(put(UserController.BASE_URL)
+                .with(httpBasic("user","password"))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(userDto))
         )
-                .andExpect(status().isCreated());
+                .andExpect(status().isOk());
 
-        userRepository.deleteByUsername(userDto.getUsername());
     }
 
+    @Test
+    void shouldUpdateUserProfileWithAdminRole() throws Exception {
+
+        mockMvc.perform(put(UserController.BASE_URL)
+                .with(httpBasic("admin","password"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(userDto))
+        )
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    void shouldThrowExceptionNoAuth() throws Exception {
+
+        mockMvc.perform(put(UserController.BASE_URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(userDto))
+        )
+                .andExpect(status().isUnauthorized());
+
+    }
 }
