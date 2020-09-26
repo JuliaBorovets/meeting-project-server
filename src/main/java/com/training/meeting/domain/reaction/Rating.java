@@ -2,6 +2,7 @@ package com.training.meeting.domain.reaction;
 
 import com.training.meeting.domain.BaseEntity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -12,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "rating")
 public class Rating extends BaseEntity {
 

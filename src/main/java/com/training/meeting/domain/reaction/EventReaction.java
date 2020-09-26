@@ -2,6 +2,7 @@ package com.training.meeting.domain.reaction;
 
 import com.training.meeting.domain.event.Event;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "event_reaction")
 public class EventReaction extends BaseReaction {
 

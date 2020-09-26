@@ -3,9 +3,11 @@ package com.training.meeting.domain;
 import com.training.meeting.domain.event.Event;
 import com.training.meeting.domain.user.User;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,7 +17,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "tag")
 public class  Tag  extends BaseEntity {
 
@@ -23,7 +25,7 @@ public class  Tag  extends BaseEntity {
 
     @Builder.Default
     @ManyToMany(mappedBy = "interestedCategories")
-    private Set<User> users = Set.of();
+    private Set<User> users = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "tag_event",

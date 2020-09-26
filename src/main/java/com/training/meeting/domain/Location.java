@@ -3,6 +3,7 @@ package com.training.meeting.domain;
 import com.training.meeting.domain.event.Event;
 import com.training.meeting.domain.user.User;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -16,7 +17,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "location")
 public class Location extends BaseEntity {
 

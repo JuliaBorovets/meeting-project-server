@@ -2,6 +2,7 @@ package com.training.meeting.domain.user;
 
 import com.training.meeting.domain.BaseEntity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
@@ -13,13 +14,13 @@ import java.time.LocalDate;
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @Entity
-@Table(name = "profile")
-public class Profile extends BaseEntity {
+@Table(name = "user_profile")
+public class UserProfile extends BaseEntity {
 
-    @OneToOne(mappedBy = "profile")
+    @OneToOne(mappedBy = "userProfile")
     private User user;
 
     private String firstName;

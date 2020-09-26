@@ -2,10 +2,12 @@ package com.training.meeting.domain.user;
 
 import com.training.meeting.domain.BaseEntity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -13,7 +15,7 @@ import java.util.Set;
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @Entity
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @Table(name = "authority")
 public class Authority extends BaseEntity {
@@ -22,5 +24,5 @@ public class Authority extends BaseEntity {
 
     @Builder.Default
     @ManyToMany(mappedBy = "authorities")
-    private Set<Role> roles = Set.of();
+    private Set<Role> roles = new HashSet<>();
 }
