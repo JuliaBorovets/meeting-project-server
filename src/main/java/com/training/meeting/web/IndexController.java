@@ -1,5 +1,6 @@
 package com.training.meeting.web;
 
+import com.training.meeting.config.security.permission.user.UserDeletePermission;
 import com.training.meeting.domain.user.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,8 +16,11 @@ public class IndexController {
         return "index";
     }
 
+    @UserDeletePermission
     @GetMapping("/test")
     public String test(@AuthenticationPrincipal User user){
+        log.info(user.getRoles().toString());
+        log.info(user.getAuthorities().toString());
         log.info(user.getUsername() + "------------------");
         return "test";
     }

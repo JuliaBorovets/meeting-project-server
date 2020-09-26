@@ -20,8 +20,9 @@ public class Role extends BaseEntity {
 
     private String name;
 
+    @Builder.Default
     @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 
     @Builder.Default
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
