@@ -31,8 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     authorize
                             .antMatchers("/h2-console/**").permitAll() //do not use in production!
                             .antMatchers("/", "/webjars/**", "/login", "/resources/**").permitAll()
-                    .antMatchers( HttpMethod.POST, "/api/v1/user/reg").permitAll();
-                } )
+                            .antMatchers(HttpMethod.POST, "/api/v1/user").permitAll();
+                })
                 .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

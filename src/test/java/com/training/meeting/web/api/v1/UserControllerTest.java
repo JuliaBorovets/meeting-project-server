@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,12 +40,25 @@ class UserControllerTest extends AbstractRestControllerTest{
     void shouldCreateUser() throws Exception {
         UserDto userDto = UserDto.builder().username("username").password("password").email("email").build();
 
-        mockMvc.perform(post(UserController.BASE_URL + "/reg")
+        mockMvc.perform(post(UserController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(userDto))
         )
                 .andExpect(status().isCreated());
 
         verify(userService).saveNewUserDto(any(UserDto.class));
+    }
+
+    @Test
+    void shouldUpdateUser() throws Exception {
+        UserDto userDto = UserDto.builder().username("username").password("password").email("email").build();
+
+        mockMvc.perform(put(UserController.BASE_URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(userDto))
+        )
+                .andExpect(status().isOk());
+
+        verify(userService).updateUserDto(any(UserDto.class));
     }
 }
