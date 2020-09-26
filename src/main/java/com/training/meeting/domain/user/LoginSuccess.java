@@ -2,6 +2,7 @@ package com.training.meeting.domain.user;
 
 import com.training.meeting.domain.BaseEntity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import java.sql.Timestamp;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "login_success")
 public class LoginSuccess extends BaseEntity {
 

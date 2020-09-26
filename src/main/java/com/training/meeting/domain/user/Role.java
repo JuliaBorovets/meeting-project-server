@@ -2,8 +2,10 @@ package com.training.meeting.domain.user;
 
 import com.training.meeting.domain.BaseEntity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -12,7 +14,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "role")
 public class Role extends BaseEntity {
 
@@ -26,5 +28,5 @@ public class Role extends BaseEntity {
     @JoinTable(name = "role_authority",
             joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "id")})
-    private Set<Authority> authorities = Set.of();
+    private Set<Authority> authorities = new HashSet<>();
 }

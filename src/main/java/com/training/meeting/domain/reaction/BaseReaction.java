@@ -4,6 +4,8 @@ import com.training.meeting.domain.BaseEntity;
 import com.training.meeting.domain.user.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -12,6 +14,8 @@ import java.util.Map;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @MappedSuperclass
+@NoArgsConstructor
+@SuperBuilder
 public abstract class BaseReaction extends BaseEntity {
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)

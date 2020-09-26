@@ -2,6 +2,7 @@ package com.training.meeting.domain;
 
 import com.training.meeting.domain.user.User;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "notification")
 public class Notification extends BaseEntity {
 

@@ -2,6 +2,7 @@ package com.training.meeting.domain.user;
 
 import com.training.meeting.domain.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -19,7 +21,7 @@ import java.util.stream.Collectors;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "user")
 public class User extends BaseEntity implements UserDetails, CredentialsContainer {
 
@@ -35,39 +37,39 @@ public class User extends BaseEntity implements UserDetails, CredentialsContaine
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
-    private Profile profile;
+    private UserProfile userProfile;
 
     @Builder.Default
     @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
-    private Set<Role> roles = Set.of();
+    private Set<Role> roles = new HashSet<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "user")
-    private Set<Notification> notifications = Set.of();
+    private Set<Notification> notifications = new HashSet<>();
 
     @Builder.Default
     @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(name = "user_tag",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "id")})
-    private Set<Tag> interestedCategories = Set.of();
+    private Set<Tag> interestedCategories = new HashSet<>();
 
     @Builder.Default
     @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(name = "organizer_organisation",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "organisation_id", referencedColumnName = "id")})
-    private Set<Organisation> organisationOrganizer = Set.of();
+    private Set<Organisation> organisationOrganizer = new HashSet<>();
 
     @Builder.Default
     @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(name = "participant_organisation",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "organisation_id", referencedColumnName = "id")})
-    private Set<Organisation> organisationParticipant = Set.of();
+    private Set<Organisation> organisationParticipant = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Location location;

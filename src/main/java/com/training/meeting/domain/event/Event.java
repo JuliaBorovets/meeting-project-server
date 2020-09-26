@@ -7,6 +7,7 @@ import com.training.meeting.domain.Tag;
 import com.training.meeting.domain.comment.EventComment;
 import com.training.meeting.domain.reaction.EventReaction;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -19,7 +20,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "event")
 public class Event extends BaseEntity {
 

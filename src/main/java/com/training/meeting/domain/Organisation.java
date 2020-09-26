@@ -5,9 +5,11 @@ import com.training.meeting.domain.event.Event;
 import com.training.meeting.domain.reaction.OrganisationReaction;
 import com.training.meeting.domain.user.User;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +19,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "organisation")
 public class Organisation extends BaseEntity {
 
@@ -33,11 +35,11 @@ public class Organisation extends BaseEntity {
 
     @Builder.Default
     @ManyToMany(mappedBy = "organisationOrganizer")
-    private Set<User> organizers = Set.of();
+    private Set<User> organizers = new HashSet<>();
 
     @Builder.Default
     @ManyToMany(mappedBy = "organisationParticipant")
-    private Set<User> participants = Set.of();
+    private Set<User> participants = new HashSet<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "organisation", cascade = CascadeType.ALL, orphanRemoval = true)
