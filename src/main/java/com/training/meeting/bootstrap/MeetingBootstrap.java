@@ -75,7 +75,7 @@ public class MeetingBootstrap implements CommandLineRunner {
                 .email("adminemail@gmail.com")
                 .userProfile(UserProfile.builder().build())
                 .build();
-      //  admin.getRoles().add(userRole);
+        admin.getRoles().add(userRole);
         admin.getRoles().add(adminRole);
 
         userRepository.save(user);
