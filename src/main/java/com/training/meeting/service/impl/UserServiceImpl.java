@@ -57,6 +57,11 @@ public class UserServiceImpl implements UserService {
         return userMapper.userToUserDto(userRepository.save(user));
     }
 
+    @Override
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
     private User findUserById(Long id) throws UserCanNotFindException {
         return userRepository.findById(id)
                 .orElseThrow(UserCanNotFindException::new);

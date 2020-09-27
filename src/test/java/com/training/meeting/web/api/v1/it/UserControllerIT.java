@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static com.training.meeting.web.api.v1.AbstractRestControllerTest.asJsonString;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -71,5 +72,19 @@ public class UserControllerIT extends BaseIT{
         )
                 .andExpect(status().isUnauthorized());
 
+    }
+
+    @Test
+    void shouldDeleteUserAdminRole() throws Exception {
+        mockMvc.perform(delete(UserController.BASE_URL + "/2")
+                .with(httpBasic("admin","password")))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void shouldNotDeleteUserUserRole() throws Exception {
+        mockMvc.perform(delete(UserController.BASE_URL + "/2")
+                .with(httpBasic("user","password")))
+                .andExpect(status().isForbidden());
     }
 }
