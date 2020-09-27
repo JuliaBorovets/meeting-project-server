@@ -1,5 +1,6 @@
 package com.training.meeting.web.api.v1;
 
+import com.training.meeting.config.security.permission.user.UserDeletePermission;
 import com.training.meeting.config.security.permission.user.UserUpdatePermission;
 import com.training.meeting.exception.RegistrationException;
 import com.training.meeting.exception.RoleCanNotFindException;
@@ -37,13 +38,11 @@ public class UserController {
         return userService.updateUserDto(userDto);
     }
 
-    @UserUpdatePermission
-    @PutMapping("/test")
+    @UserDeletePermission
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void test(@Valid @RequestBody UserDto userDto) throws UserCanNotFindException {
-         userService.updateUserDto(userDto);
-        //todo
-        log.info("-------------------------------------------");
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
     }
 
 }

@@ -11,4 +11,6 @@ public interface UserService {
 
     UserDto updateUserDto(UserDto userDto) throws UserCanNotFindException;
 
+    void deleteUser(Long id);
+
 }

@@ -61,6 +61,14 @@ public class MeetingBootstrap implements CommandLineRunner {
                 .build();
         user.getRoles().add(userRole);
 
+        User user2 = User.builder()
+                .username("user2")
+                .password(passwordEncoder.encode("password"))
+                .email("useremail2@gmail.com")
+                .userProfile(UserProfile.builder().build())
+                .build();
+        user.getRoles().add(userRole);
+
         User admin = User.builder()
                 .username("admin")
                 .password(passwordEncoder.encode("password"))
@@ -71,6 +79,7 @@ public class MeetingBootstrap implements CommandLineRunner {
         admin.getRoles().add(adminRole);
 
         userRepository.save(user);
+        userRepository.save(user2);
         userRepository.save(admin);
 
         log.info("Users Loaded: " + userRepository.count());
