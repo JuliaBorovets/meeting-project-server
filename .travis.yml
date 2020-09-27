@@ -15,6 +15,8 @@ services: mysql
 before_script:
   - mysql -e 'DROP DATABASE IF EXISTS meeting_project;'
   - mysql -e 'CREATE DATABASE IF NOT EXISTS meeting_project;'
+  - mysql -e 'DROP DATABASE IF EXISTS meeting_project_test;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS meeting_project_test;'
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
