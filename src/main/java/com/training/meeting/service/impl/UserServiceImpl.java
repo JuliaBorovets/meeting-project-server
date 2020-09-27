@@ -2,6 +2,7 @@ package com.training.meeting.service.impl;
 
 import com.training.meeting.domain.user.Role;
 import com.training.meeting.domain.user.User;
+import com.training.meeting.domain.user.UserProfile;
 import com.training.meeting.exception.RegistrationException;
 import com.training.meeting.exception.RoleCanNotFindException;
 import com.training.meeting.exception.UserCanNotFindException;
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         Role defaultRole = roleService.findRoleByName("USER");
         user.getRoles().add(defaultRole);
+        user.setUserProfile(UserProfile.builder().build());
 
         try {
             userRepository.save(user);
