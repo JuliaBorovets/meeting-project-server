@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static com.training.meeting.web.api.v1.AbstractRestControllerTest.asJsonString;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -37,6 +37,20 @@ public class UserControllerIT extends BaseIT{
             .username("user")
            // .userProfile(UserProfileDto.builder().build())
             .build();
+
+    @Test
+    void shouldCreateUser() throws Exception {
+        UserDto userDto = UserDto.builder()
+            .email("email3")
+            .password("password")
+            .username("user3")
+            .build();
+        mockMvc.perform(post(UserController.BASE_URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(userDto))
+        )
+                .andExpect(status().isCreated());
+    }
 
     @Test
     void shouldUpdateUserProfileWithUserRole() throws Exception {
@@ -72,4 +86,19 @@ public class UserControllerIT extends BaseIT{
                 .andExpect(status().isUnauthorized());
 
     }
+
+    @Test
+    void shouldDeleteUserAdminRole() throws Exception {
+        mockMvc.perform(delete(UserController.BASE_URL + "/2")
+                .with(httpBasic("admin","password")))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void shouldNotDeleteUserUserRole() throws Exception {
+        mockMvc.perform(delete(UserController.BASE_URL + "/2")
+                .with(httpBasic("user","password")))
+                .andExpect(status().isForbidden());
+    }
+
 }

@@ -2,8 +2,6 @@ package com.training.meeting.web.dto.v1;
 
 import lombok.*;
 
-import java.time.LocalDate;
-
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
@@ -18,7 +16,7 @@ public class UserProfileDto {
 
     private String lastName;
 
-    private LocalDate birthday;
+    private String birthday;
 
     private String bio;
 

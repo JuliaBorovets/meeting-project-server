@@ -13,9 +13,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
@@ -60,5 +60,14 @@ class UserControllerTest extends AbstractRestControllerTest{
                 .andExpect(status().isOk());
 
         verify(userService).updateUserDto(any(UserDto.class));
+    }
+
+    @Test
+    void shouldDeleteUser() throws Exception {
+
+        mockMvc.perform(delete(UserController.BASE_URL + "/3"))
+                .andExpect(status().isOk());
+
+        verify(userService).deleteUser(anyLong());
     }
 }

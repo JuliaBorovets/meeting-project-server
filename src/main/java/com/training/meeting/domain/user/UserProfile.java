@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Data
-@ToString(callSuper = true, onlyExplicitlyIncluded = true)
+@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @SuperBuilder

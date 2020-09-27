@@ -141,4 +141,10 @@ class UserServiceImplTest {
         verify(userRepository, times(0)).save(any(User.class));
 
     }
+
+    @Test
+    void shouldDeleteUser() {
+        userService.deleteUser(1L);
+        verify(userRepository).deleteById(anyLong());
+    }
 }
