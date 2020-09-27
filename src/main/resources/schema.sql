@@ -134,8 +134,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`user`
     `location_id`             BIGINT       NULL DEFAULT NULL,
     `profile_id`              BIGINT       NULL DEFAULT NULL,
     PRIMARY KEY (`id`),
-    UNIQUE INDEX `UK_ob8kqyqqgmefl0aco34akdtpe` (`email` ASC) VISIBLE,
-    UNIQUE INDEX `UK_sb8bbouer5wak8vyiiy4pf2bx` (`username` ASC) VISIBLE,
+    UNIQUE INDEX `UK_ob8kqyqqgmefl0aco34akdtpe` (`email` ASC),
+    UNIQUE INDEX `UK_sb8bbouer5wak8vyiiy4pf2bx` (`username` ASC),
     INDEX `FKneyhvoj17hax43m8dq3u7gbic` (`location_id` ASC),
     INDEX `FK5hv52mjjufrwrx302p37tq262` (`profile_id` ASC),
     CONSTRAINT `FK5hv52mjjufrwrx302p37tq262`
