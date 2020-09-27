@@ -2,7 +2,7 @@ package com.training.meeting.service.impl;
 
 
 import com.training.meeting.domain.user.UserProfile;
-import com.training.meeting.exception.UserCanNotFindException;
+import com.training.meeting.exception.UserProfileCanNotFindException;
 import com.training.meeting.repository.user.UserProfileRepository;
 import com.training.meeting.service.UserProfileService;
 import com.training.meeting.web.dto.v1.UserProfileDto;
@@ -27,7 +27,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Transactional
     @Override
-    public UserProfileDto updateUserProfile(UserProfileDto userProfileDto) throws UserCanNotFindException {
+    public UserProfileDto updateUserProfile(UserProfileDto userProfileDto) throws UserProfileCanNotFindException {
 
         UserProfile userProfile = findUserProfileById(userProfileDto.getId());
 
@@ -43,8 +43,8 @@ public class UserProfileServiceImpl implements UserProfileService {
         );
     }
 
-    private UserProfile findUserProfileById(Long id) throws UserCanNotFindException {
+    private UserProfile findUserProfileById(Long id) throws UserProfileCanNotFindException {
         return userProfileRepository.findById(id)
-                .orElseThrow(UserCanNotFindException::new);
+                .orElseThrow(UserProfileCanNotFindException::new);
     }
 }

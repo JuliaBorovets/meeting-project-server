@@ -1,18 +1,13 @@
--- Schema meeting_project
+DROP SCHEMA IF EXISTS `meeting_project_test`;
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `meeting_project`;
+CREATE SCHEMA IF NOT EXISTS `meeting_project_test` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `meeting_project_test`;
 
 -- -----------------------------------------------------
--- Schema meeting_project
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `meeting_project` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `meeting_project`;
-
--- -----------------------------------------------------
--- Table `meeting_project`.`authority`
+-- Table `meeting_project_test`.`authority`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`authority`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`authority`
 (
     `id`            BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date` DATETIME     NULL DEFAULT NULL,
@@ -26,9 +21,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`authority`
 
 -- -----------------------------------------------------
 -- Table `meeting_project`.`location`
--- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`location`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`location`
 (
     `id`            BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date` DATETIME     NULL DEFAULT NULL,
@@ -42,10 +36,9 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`location`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`organisation`
--- -----------------------------------------------------
+-- Table `meeting_project_test`.`organisation`
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`organisation`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`organisation`
 (
     `id`            BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date` DATETIME     NULL DEFAULT NULL,
@@ -61,10 +54,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`organisation`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`event`
+-- Table `meeting_project_test`.`event`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`event`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`event`
 (
     `id`                      BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date`           DATETIME     NULL DEFAULT NULL,
@@ -81,10 +74,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`event`
     INDEX `FKt7kl5umnufdte3xmqq01vkls` (`organisation_id` ASC),
     CONSTRAINT `FKbb6c0h5nhs5og47iem617ehrl`
         FOREIGN KEY (`location_id`)
-            REFERENCES `meeting_project`.`location` (`id`),
+            REFERENCES `meeting_project_test`.`location` (`id`),
     CONSTRAINT `FKt7kl5umnufdte3xmqq01vkls`
         FOREIGN KEY (`organisation_id`)
-            REFERENCES `meeting_project`.`organisation` (`id`)
+            REFERENCES `meeting_project_test`.`organisation` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
@@ -92,10 +85,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`event`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`user_profile`
+-- Table `meeting_project_test`.`user_profile`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`user_profile`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`user_profile`
 (
     `id`            BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date` DATETIME     NULL DEFAULT CURRENT_TIMESTAMP,
@@ -114,10 +107,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`user_profile`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`user`
+-- Table `meeting_project_test`.`user`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`user`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`user`
 (
     `id`                      BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date`           DATETIME     NULL DEFAULT CURRENT_TIMESTAMP,
@@ -140,10 +133,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`user`
     INDEX `FK5hv52mjjufrwrx302p37tq262` (`profile_id` ASC),
     CONSTRAINT `FK5hv52mjjufrwrx302p37tq262`
         FOREIGN KEY (`profile_id`)
-            REFERENCES `meeting_project`.`user_profile` (`id`),
+            REFERENCES `meeting_project_test`.`user_profile` (`id`),
     CONSTRAINT `FKneyhvoj17hax43m8dq3u7gbic`
         FOREIGN KEY (`location_id`)
-            REFERENCES `meeting_project`.`location` (`id`)
+            REFERENCES `meeting_project_test`.`location` (`id`)
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 4
@@ -152,10 +145,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`user`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`event_comment`
+-- Table `meeting_project_test`.`event_comment`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`event_comment`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`event_comment`
 (
     `id`            BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date` DATETIME     NULL DEFAULT NULL,
@@ -167,10 +160,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`event_comment`
     INDEX `FKs4ojbhvimbvt7758uvlx8ddlo` (`event_id` ASC),
     CONSTRAINT `FKa7frm721972d53jrsw9vklqio`
         FOREIGN KEY (`user_id`)
-            REFERENCES `meeting_project`.`user` (`id`),
+            REFERENCES `meeting_project_test`.`user` (`id`),
     CONSTRAINT `FKs4ojbhvimbvt7758uvlx8ddlo`
         FOREIGN KEY (`event_id`)
-            REFERENCES `meeting_project`.`event` (`id`)
+            REFERENCES `meeting_project_test`.`event` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
@@ -178,10 +171,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`event_comment`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`rating`
+-- Table `meeting_project_test`.`rating`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`rating`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`rating`
 (
     `id`            BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date` DATETIME     NULL DEFAULT NULL,
@@ -195,10 +188,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`rating`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`event_reaction`
+-- Table `meeting_project_test`.`event_reaction`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`event_reaction`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`event_reaction`
 (
     `id`            BIGINT   NOT NULL AUTO_INCREMENT,
     `creation_date` DATETIME NULL DEFAULT NULL,
@@ -211,13 +204,13 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`event_reaction`
     INDEX `FK2j7fi0ncp21fn7e6n77ky4iw3` (`event_id` ASC),
     CONSTRAINT `FK2j7fi0ncp21fn7e6n77ky4iw3`
         FOREIGN KEY (`event_id`)
-            REFERENCES `meeting_project`.`event` (`id`),
+            REFERENCES `meeting_project_test`.`event` (`id`),
     CONSTRAINT `FK4pul5a4mb2sot4ly0afmm99dt`
         FOREIGN KEY (`rating_id`)
-            REFERENCES `meeting_project`.`rating` (`id`),
+            REFERENCES `meeting_project_test`.`rating` (`id`),
     CONSTRAINT `FK8ivkj9brky6rikjjqq8mbu1m3`
         FOREIGN KEY (`user_id`)
-            REFERENCES `meeting_project`.`user` (`id`)
+            REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
@@ -225,10 +218,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`event_reaction`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`login_failure`
+-- Table `meeting_project_test`.`login_failure`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`login_failure`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`login_failure`
 (
     `id`                 BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date`      DATETIME     NULL DEFAULT NULL,
@@ -240,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`login_failure`
     INDEX `FK7yuqycsl6io9aivn03yr2hiia` (`user_id` ASC),
     CONSTRAINT `FK7yuqycsl6io9aivn03yr2hiia`
         FOREIGN KEY (`user_id`)
-            REFERENCES `meeting_project`.`user` (`id`)
+            REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
@@ -248,10 +241,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`login_failure`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`login_success`
+-- Table `meeting_project_test`.`login_success`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`login_success`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`login_success`
 (
     `id`                 BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date`      DATETIME     NULL DEFAULT NULL,
@@ -262,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`login_success`
     INDEX `FKbhp83p080sodt4vrtcgbsdl9e` (`user_id` ASC),
     CONSTRAINT `FKbhp83p080sodt4vrtcgbsdl9e`
         FOREIGN KEY (`user_id`)
-            REFERENCES `meeting_project`.`user` (`id`)
+            REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
@@ -270,10 +263,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`login_success`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`notification`
+-- Table `meeting_project_test`.`notification`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`notification`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`notification`
 (
     `id`            BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date` DATETIME     NULL DEFAULT NULL,
@@ -284,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`notification`
     INDEX `FKb0yvoep4h4k92ipon31wmdf7e` (`user_id` ASC),
     CONSTRAINT `FKb0yvoep4h4k92ipon31wmdf7e`
         FOREIGN KEY (`user_id`)
-            REFERENCES `meeting_project`.`user` (`id`)
+            REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
@@ -292,10 +285,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`notification`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`organisation_comment`
+-- Table `meeting_project_test`.`organisation_comment`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`organisation_comment`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`organisation_comment`
 (
     `id`              BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date`   DATETIME     NULL DEFAULT NULL,
@@ -307,10 +300,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`organisation_comment`
     INDEX `FK43yb9gtdfbuwp9o2j4pm8p5qg` (`organisation_id` ASC),
     CONSTRAINT `FK43yb9gtdfbuwp9o2j4pm8p5qg`
         FOREIGN KEY (`organisation_id`)
-            REFERENCES `meeting_project`.`organisation` (`id`),
+            REFERENCES `meeting_project_test`.`organisation` (`id`),
     CONSTRAINT `FK5fw9q8vrot721oxwek882pb35`
         FOREIGN KEY (`user_id`)
-            REFERENCES `meeting_project`.`user` (`id`)
+            REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
@@ -318,10 +311,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`organisation_comment`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`organisation_reaction`
+-- Table `meeting_project_test`.`organisation_reaction`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`organisation_reaction`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`organisation_reaction`
 (
     `id`              BIGINT   NOT NULL AUTO_INCREMENT,
     `creation_date`   DATETIME NULL DEFAULT NULL,
@@ -334,13 +327,13 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`organisation_reaction`
     INDEX `FKlggckwo0e77l28mejyo51gvu4` (`organisation_id` ASC),
     CONSTRAINT `FK8ov0xde2txep8hu2bc9x88wcj`
         FOREIGN KEY (`user_id`)
-            REFERENCES `meeting_project`.`user` (`id`),
+            REFERENCES `meeting_project_test`.`user` (`id`),
     CONSTRAINT `FK9v67gpi1ocgkiqi1dxxu37f`
         FOREIGN KEY (`rating_id`)
-            REFERENCES `meeting_project`.`rating` (`id`),
+            REFERENCES `meeting_project_test`.`rating` (`id`),
     CONSTRAINT `FKlggckwo0e77l28mejyo51gvu4`
         FOREIGN KEY (`organisation_id`)
-            REFERENCES `meeting_project`.`organisation` (`id`)
+            REFERENCES `meeting_project_test`.`organisation` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
@@ -348,10 +341,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`organisation_reaction`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`organizer_organisation`
+-- Table `meeting_project_test`.`organizer_organisation`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`organizer_organisation`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`organizer_organisation`
 (
     `user_id`         BIGINT NOT NULL,
     `organisation_id` BIGINT NOT NULL,
@@ -359,10 +352,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`organizer_organisation`
     INDEX `FKi6btsbjlsshbiipax0co7rdab` (`organisation_id` ASC),
     CONSTRAINT `FKbksslw09c6chjik3yfrcggt0y`
         FOREIGN KEY (`user_id`)
-            REFERENCES `meeting_project`.`user` (`id`),
+            REFERENCES `meeting_project_test`.`user` (`id`),
     CONSTRAINT `FKi6btsbjlsshbiipax0co7rdab`
         FOREIGN KEY (`organisation_id`)
-            REFERENCES `meeting_project`.`organisation` (`id`)
+            REFERENCES `meeting_project_test`.`organisation` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
@@ -370,10 +363,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`organizer_organisation`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`participant_organisation`
+-- Table `meeting_project_test`.`participant_organisation`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`participant_organisation`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`participant_organisation`
 (
     `user_id`         BIGINT NOT NULL,
     `organisation_id` BIGINT NOT NULL,
@@ -381,10 +374,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`participant_organisation`
     INDEX `FKjrf5ptc2jis9hswr1j8tqo5ob` (`organisation_id` ASC),
     CONSTRAINT `FKjrf5ptc2jis9hswr1j8tqo5ob`
         FOREIGN KEY (`organisation_id`)
-            REFERENCES `meeting_project`.`organisation` (`id`),
+            REFERENCES `meeting_project_test`.`organisation` (`id`),
     CONSTRAINT `FKk7gb0mttp8ycqtgxoybcwo8o6`
         FOREIGN KEY (`user_id`)
-            REFERENCES `meeting_project`.`user` (`id`)
+            REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
@@ -392,10 +385,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`participant_organisation`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`persistent_logins`
+-- Table `meeting_project_test`.`persistent_logins`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`persistent_logins`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`persistent_logins`
 (
     `username`  VARCHAR(64) NOT NULL,
     `series`    VARCHAR(64) NOT NULL,
@@ -409,10 +402,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`persistent_logins`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`role`
+-- Table `meeting_project_test`.`role`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`role`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`role`
 (
     `id`            BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date` DATETIME     NULL DEFAULT NULL,
@@ -426,10 +419,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`role`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`role_authority`
+-- Table `meeting_project_test`.`role_authority`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`role_authority`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`role_authority`
 (
     `role_id`      BIGINT NOT NULL,
     `authority_id` BIGINT NOT NULL,
@@ -437,10 +430,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`role_authority`
     INDEX `FKqbri833f7xop13bvdje3xxtnw` (`authority_id` ASC),
     CONSTRAINT `FK2052966dco7y9f97s1a824bj1`
         FOREIGN KEY (`role_id`)
-            REFERENCES `meeting_project`.`role` (`id`),
+            REFERENCES `meeting_project_test`.`role` (`id`),
     CONSTRAINT `FKqbri833f7xop13bvdje3xxtnw`
         FOREIGN KEY (`authority_id`)
-            REFERENCES `meeting_project`.`authority` (`id`)
+            REFERENCES `meeting_project_test`.`authority` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
@@ -448,10 +441,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`role_authority`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`tag`
+-- Table `meeting_project_test`.`tag`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`tag`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`tag`
 (
     `id`            BIGINT       NOT NULL AUTO_INCREMENT,
     `creation_date` DATETIME     NULL DEFAULT NULL,
@@ -464,10 +457,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`tag`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`tag_event`
+-- Table `meeting_project_test`.`tag_event`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`tag_event`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`tag_event`
 (
     `tag_id`   BIGINT NOT NULL,
     `event_id` BIGINT NOT NULL,
@@ -475,10 +468,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`tag_event`
     INDEX `FKpqyke3bxjl4ftb6txeeqnarbv` (`tag_id` ASC),
     CONSTRAINT `FK26pkm7j50lbwxhafk844t7f52`
         FOREIGN KEY (`event_id`)
-            REFERENCES `meeting_project`.`event` (`id`),
+            REFERENCES `meeting_project_test`.`event` (`id`),
     CONSTRAINT `FKpqyke3bxjl4ftb6txeeqnarbv`
         FOREIGN KEY (`tag_id`)
-            REFERENCES `meeting_project`.`tag` (`id`)
+            REFERENCES `meeting_project_test`.`tag` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
@@ -486,10 +479,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`tag_event`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`user_role`
+-- Table `meeting_project_test`.`user_role`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`user_role`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`user_role`
 (
     `user_id` BIGINT NOT NULL,
     `role_id` BIGINT NOT NULL,
@@ -497,10 +490,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`user_role`
     INDEX `FKa68196081fvovjhkek5m97n3y` (`role_id` ASC),
     CONSTRAINT `FK859n2jvi8ivhui0rl0esws6o`
         FOREIGN KEY (`user_id`)
-            REFERENCES `meeting_project`.`user` (`id`),
+            REFERENCES `meeting_project_test`.`user` (`id`),
     CONSTRAINT `FKa68196081fvovjhkek5m97n3y`
         FOREIGN KEY (`role_id`)
-            REFERENCES `meeting_project`.`role` (`id`)
+            REFERENCES `meeting_project_test`.`role` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
@@ -508,10 +501,10 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`user_role`
 
 
 -- -----------------------------------------------------
--- Table `meeting_project`.`user_tag`
+-- Table `meeting_project_test`.`user_tag`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `meeting_project`.`user_tag`
+CREATE TABLE IF NOT EXISTS `meeting_project_test`.`user_tag`
 (
     `user_id` BIGINT NOT NULL,
     `tag_id`  BIGINT NOT NULL,
@@ -519,12 +512,13 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`user_tag`
     INDEX `FK9qknt3y115f17660k0qnm9x3g` (`tag_id` ASC),
     CONSTRAINT `FK9qknt3y115f17660k0qnm9x3g`
         FOREIGN KEY (`tag_id`)
-            REFERENCES `meeting_project`.`tag` (`id`),
+            REFERENCES `meeting_project_test`.`tag` (`id`),
     CONSTRAINT `FKhqbypqh9kyjp3jcslfg67c6n5`
         FOREIGN KEY (`user_id`)
-            REFERENCES `meeting_project`.`user` (`id`)
+            REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
     COLLATE = utf8_general_ci;
+
 

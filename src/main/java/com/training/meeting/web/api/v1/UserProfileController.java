@@ -1,7 +1,7 @@
 package com.training.meeting.web.api.v1;
 
 import com.training.meeting.config.security.permission.user.UserUpdatePermission;
-import com.training.meeting.exception.UserCanNotFindException;
+import com.training.meeting.exception.UserProfileCanNotFindException;
 import com.training.meeting.service.UserProfileService;
 import com.training.meeting.web.dto.v1.UserProfileDto;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class UserProfileController {
     @UserUpdatePermission
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public UserProfileDto updateUserProfile(@Valid @RequestBody UserProfileDto userProfileDto) throws UserCanNotFindException {
+    public UserProfileDto updateUserProfile(@Valid @RequestBody UserProfileDto userProfileDto) throws UserProfileCanNotFindException {
         return userProfileService.updateUserProfile(userProfileDto);
     }
 }
