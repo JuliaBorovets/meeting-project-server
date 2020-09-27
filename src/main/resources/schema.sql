@@ -77,8 +77,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`event`
     `location_id`             BIGINT       NULL DEFAULT NULL,
     `organisation_id`         BIGINT       NOT NULL,
     PRIMARY KEY (`id`),
-    INDEX `FKbb6c0h5nhs5og47iem617ehrl` (`location_id` ASC) VISIBLE,
-    INDEX `FKt7kl5umnufdte3xmqq01vkls` (`organisation_id` ASC) VISIBLE,
+    INDEX `FKbb6c0h5nhs5og47iem617ehrl` (`location_id` ASC),
+    INDEX `FKt7kl5umnufdte3xmqq01vkls` (`organisation_id` ASC),
     CONSTRAINT `FKbb6c0h5nhs5og47iem617ehrl`
         FOREIGN KEY (`location_id`)
             REFERENCES `meeting_project`.`location` (`id`),
@@ -136,8 +136,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`user`
     PRIMARY KEY (`id`),
     UNIQUE INDEX `UK_ob8kqyqqgmefl0aco34akdtpe` (`email` ASC) VISIBLE,
     UNIQUE INDEX `UK_sb8bbouer5wak8vyiiy4pf2bx` (`username` ASC) VISIBLE,
-    INDEX `FKneyhvoj17hax43m8dq3u7gbic` (`location_id` ASC) VISIBLE,
-    INDEX `FK5hv52mjjufrwrx302p37tq262` (`profile_id` ASC) VISIBLE,
+    INDEX `FKneyhvoj17hax43m8dq3u7gbic` (`location_id` ASC),
+    INDEX `FK5hv52mjjufrwrx302p37tq262` (`profile_id` ASC),
     CONSTRAINT `FK5hv52mjjufrwrx302p37tq262`
         FOREIGN KEY (`profile_id`)
             REFERENCES `meeting_project`.`user_profile` (`id`),
@@ -163,8 +163,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`event_comment`
     `user_id`       BIGINT       NULL DEFAULT NULL,
     `event_id`      BIGINT       NULL DEFAULT NULL,
     PRIMARY KEY (`id`),
-    INDEX `FKa7frm721972d53jrsw9vklqio` (`user_id` ASC) VISIBLE,
-    INDEX `FKs4ojbhvimbvt7758uvlx8ddlo` (`event_id` ASC) VISIBLE,
+    INDEX `FKa7frm721972d53jrsw9vklqio` (`user_id` ASC),
+    INDEX `FKs4ojbhvimbvt7758uvlx8ddlo` (`event_id` ASC),
     CONSTRAINT `FKa7frm721972d53jrsw9vklqio`
         FOREIGN KEY (`user_id`)
             REFERENCES `meeting_project`.`user` (`id`),
@@ -206,9 +206,9 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`event_reaction`
     `user_id`       BIGINT   NULL DEFAULT NULL,
     `event_id`      BIGINT   NULL DEFAULT NULL,
     PRIMARY KEY (`id`),
-    INDEX `FK4pul5a4mb2sot4ly0afmm99dt` (`rating_id` ASC) VISIBLE,
-    INDEX `FK8ivkj9brky6rikjjqq8mbu1m3` (`user_id` ASC) VISIBLE,
-    INDEX `FK2j7fi0ncp21fn7e6n77ky4iw3` (`event_id` ASC) VISIBLE,
+    INDEX `FK4pul5a4mb2sot4ly0afmm99dt` (`rating_id` ASC),
+    INDEX `FK8ivkj9brky6rikjjqq8mbu1m3` (`user_id` ASC),
+    INDEX `FK2j7fi0ncp21fn7e6n77ky4iw3` (`event_id` ASC),
     CONSTRAINT `FK2j7fi0ncp21fn7e6n77ky4iw3`
         FOREIGN KEY (`event_id`)
             REFERENCES `meeting_project`.`event` (`id`),
@@ -237,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`login_failure`
     `username`           VARCHAR(255) NULL DEFAULT NULL,
     `user_id`            BIGINT       NULL DEFAULT NULL,
     PRIMARY KEY (`id`),
-    INDEX `FK7yuqycsl6io9aivn03yr2hiia` (`user_id` ASC) VISIBLE,
+    INDEX `FK7yuqycsl6io9aivn03yr2hiia` (`user_id` ASC),
     CONSTRAINT `FK7yuqycsl6io9aivn03yr2hiia`
         FOREIGN KEY (`user_id`)
             REFERENCES `meeting_project`.`user` (`id`)
@@ -259,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`login_success`
     `source_ip`          VARCHAR(255) NULL DEFAULT NULL,
     `user_id`            BIGINT       NULL DEFAULT NULL,
     PRIMARY KEY (`id`),
-    INDEX `FKbhp83p080sodt4vrtcgbsdl9e` (`user_id` ASC) VISIBLE,
+    INDEX `FKbhp83p080sodt4vrtcgbsdl9e` (`user_id` ASC),
     CONSTRAINT `FKbhp83p080sodt4vrtcgbsdl9e`
         FOREIGN KEY (`user_id`)
             REFERENCES `meeting_project`.`user` (`id`)
@@ -281,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`notification`
     `text`          VARCHAR(255) NULL DEFAULT NULL,
     `user_id`       BIGINT       NULL DEFAULT NULL,
     PRIMARY KEY (`id`),
-    INDEX `FKb0yvoep4h4k92ipon31wmdf7e` (`user_id` ASC) VISIBLE,
+    INDEX `FKb0yvoep4h4k92ipon31wmdf7e` (`user_id` ASC),
     CONSTRAINT `FKb0yvoep4h4k92ipon31wmdf7e`
         FOREIGN KEY (`user_id`)
             REFERENCES `meeting_project`.`user` (`id`)
@@ -303,8 +303,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`organisation_comment`
     `user_id`         BIGINT       NULL DEFAULT NULL,
     `organisation_id` BIGINT       NULL DEFAULT NULL,
     PRIMARY KEY (`id`),
-    INDEX `FK5fw9q8vrot721oxwek882pb35` (`user_id` ASC) VISIBLE,
-    INDEX `FK43yb9gtdfbuwp9o2j4pm8p5qg` (`organisation_id` ASC) VISIBLE,
+    INDEX `FK5fw9q8vrot721oxwek882pb35` (`user_id` ASC),
+    INDEX `FK43yb9gtdfbuwp9o2j4pm8p5qg` (`organisation_id` ASC),
     CONSTRAINT `FK43yb9gtdfbuwp9o2j4pm8p5qg`
         FOREIGN KEY (`organisation_id`)
             REFERENCES `meeting_project`.`organisation` (`id`),
@@ -329,9 +329,9 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`organisation_reaction`
     `user_id`         BIGINT   NULL DEFAULT NULL,
     `organisation_id` BIGINT   NULL DEFAULT NULL,
     PRIMARY KEY (`id`),
-    INDEX `FK9v67gpi1ocgkiqi1dxxu37f` (`rating_id` ASC) VISIBLE,
-    INDEX `FK8ov0xde2txep8hu2bc9x88wcj` (`user_id` ASC) VISIBLE,
-    INDEX `FKlggckwo0e77l28mejyo51gvu4` (`organisation_id` ASC) VISIBLE,
+    INDEX `FK9v67gpi1ocgkiqi1dxxu37f` (`rating_id` ASC),
+    INDEX `FK8ov0xde2txep8hu2bc9x88wcj` (`user_id` ASC),
+    INDEX `FKlggckwo0e77l28mejyo51gvu4` (`organisation_id` ASC),
     CONSTRAINT `FK8ov0xde2txep8hu2bc9x88wcj`
         FOREIGN KEY (`user_id`)
             REFERENCES `meeting_project`.`user` (`id`),
@@ -356,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`organizer_organisation`
     `user_id`         BIGINT NOT NULL,
     `organisation_id` BIGINT NOT NULL,
     PRIMARY KEY (`user_id`, `organisation_id`),
-    INDEX `FKi6btsbjlsshbiipax0co7rdab` (`organisation_id` ASC) VISIBLE,
+    INDEX `FKi6btsbjlsshbiipax0co7rdab` (`organisation_id` ASC),
     CONSTRAINT `FKbksslw09c6chjik3yfrcggt0y`
         FOREIGN KEY (`user_id`)
             REFERENCES `meeting_project`.`user` (`id`),
@@ -378,7 +378,7 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`participant_organisation`
     `user_id`         BIGINT NOT NULL,
     `organisation_id` BIGINT NOT NULL,
     PRIMARY KEY (`user_id`, `organisation_id`),
-    INDEX `FKjrf5ptc2jis9hswr1j8tqo5ob` (`organisation_id` ASC) VISIBLE,
+    INDEX `FKjrf5ptc2jis9hswr1j8tqo5ob` (`organisation_id` ASC),
     CONSTRAINT `FKjrf5ptc2jis9hswr1j8tqo5ob`
         FOREIGN KEY (`organisation_id`)
             REFERENCES `meeting_project`.`organisation` (`id`),
@@ -434,7 +434,7 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`role_authority`
     `role_id`      BIGINT NOT NULL,
     `authority_id` BIGINT NOT NULL,
     PRIMARY KEY (`role_id`, `authority_id`),
-    INDEX `FKqbri833f7xop13bvdje3xxtnw` (`authority_id` ASC) VISIBLE,
+    INDEX `FKqbri833f7xop13bvdje3xxtnw` (`authority_id` ASC),
     CONSTRAINT `FK2052966dco7y9f97s1a824bj1`
         FOREIGN KEY (`role_id`)
             REFERENCES `meeting_project`.`role` (`id`),
@@ -471,8 +471,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`tag_event`
 (
     `tag_id`   BIGINT NOT NULL,
     `event_id` BIGINT NOT NULL,
-    INDEX `FK26pkm7j50lbwxhafk844t7f52` (`event_id` ASC) VISIBLE,
-    INDEX `FKpqyke3bxjl4ftb6txeeqnarbv` (`tag_id` ASC) VISIBLE,
+    INDEX `FK26pkm7j50lbwxhafk844t7f52` (`event_id` ASC),
+    INDEX `FKpqyke3bxjl4ftb6txeeqnarbv` (`tag_id` ASC),
     CONSTRAINT `FK26pkm7j50lbwxhafk844t7f52`
         FOREIGN KEY (`event_id`)
             REFERENCES `meeting_project`.`event` (`id`),
@@ -494,7 +494,7 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`user_role`
     `user_id` BIGINT NOT NULL,
     `role_id` BIGINT NOT NULL,
     PRIMARY KEY (`user_id`, `role_id`),
-    INDEX `FKa68196081fvovjhkek5m97n3y` (`role_id` ASC) VISIBLE,
+    INDEX `FKa68196081fvovjhkek5m97n3y` (`role_id` ASC),
     CONSTRAINT `FK859n2jvi8ivhui0rl0esws6o`
         FOREIGN KEY (`user_id`)
             REFERENCES `meeting_project`.`user` (`id`),
@@ -516,7 +516,7 @@ CREATE TABLE IF NOT EXISTS `meeting_project`.`user_tag`
     `user_id` BIGINT NOT NULL,
     `tag_id`  BIGINT NOT NULL,
     PRIMARY KEY (`user_id`, `tag_id`),
-    INDEX `FK9qknt3y115f17660k0qnm9x3g` (`tag_id` ASC) VISIBLE,
+    INDEX `FK9qknt3y115f17660k0qnm9x3g` (`tag_id` ASC),
     CONSTRAINT `FK9qknt3y115f17660k0qnm9x3g`
         FOREIGN KEY (`tag_id`)
             REFERENCES `meeting_project`.`tag` (`id`),
