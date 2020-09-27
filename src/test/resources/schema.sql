@@ -1,6 +1,6 @@
 DROP SCHEMA IF EXISTS `meeting_project_test`;
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `meeting_project_test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE SCHEMA IF NOT EXISTS `meeting_project_test` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `meeting_project_test`;
 
 -- -----------------------------------------------------
@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`authority`
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`location`
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -49,8 +49,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`organisation`
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -80,8 +80,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`event`
             REFERENCES `meeting_project_test`.`organisation` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -102,8 +102,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`user_profile`
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 4
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -140,8 +140,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`user`
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 4
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -166,8 +166,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`event_comment`
             REFERENCES `meeting_project_test`.`event` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -183,8 +183,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`rating`
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -213,8 +213,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`event_reaction`
             REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -236,8 +236,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`login_failure`
             REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -258,8 +258,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`login_success`
             REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -280,8 +280,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`notification`
             REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -306,8 +306,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`organisation_comment`
             REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -336,8 +336,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`organisation_reaction`
             REFERENCES `meeting_project_test`.`organisation` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -358,8 +358,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`organizer_organisation`
             REFERENCES `meeting_project_test`.`organisation` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -380,8 +380,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`participant_organisation`
             REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -397,8 +397,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`persistent_logins`
     PRIMARY KEY (`series`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -414,8 +414,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`role`
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 3
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -436,8 +436,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`role_authority`
             REFERENCES `meeting_project_test`.`authority` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -452,8 +452,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`tag`
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -474,8 +474,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`tag_event`
             REFERENCES `meeting_project_test`.`tag` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -496,8 +496,8 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`user_role`
             REFERENCES `meeting_project_test`.`role` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -518,7 +518,7 @@ CREATE TABLE IF NOT EXISTS `meeting_project_test`.`user_tag`
             REFERENCES `meeting_project_test`.`user` (`id`)
 )
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_general_ci;
+    DEFAULT CHARACTER SET = utf8
+    COLLATE = utf8_general_ci;
 
 
