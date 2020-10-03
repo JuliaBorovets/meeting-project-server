@@ -38,7 +38,7 @@ public class UserProfileControllerIT extends BaseIT {
                 .build();
 
         mockMvc.perform(put(UserProfileController.BASE_URL)
-                .with(httpBasic("user","password"))
+                .with(httpBasic("username","password12A"))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(userProfileDto))
         )

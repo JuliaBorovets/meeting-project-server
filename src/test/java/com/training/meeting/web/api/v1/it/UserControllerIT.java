@@ -32,18 +32,18 @@ public class UserControllerIT extends BaseIT{
 
     UserDto userDto = UserDto.builder()
             .id(1L)
-            .email("email")
-            .password("password")
-            .username("user")
+            .email("email@gmail.com")
+            .password("password12A")
+            .username("username")
            // .userProfile(UserProfileDto.builder().build())
             .build();
 
     @Test
     void shouldCreateUser() throws Exception {
         UserDto userDto = UserDto.builder()
-            .email("email3")
-            .password("password")
-            .username("user3")
+            .email("email3@gmail.com")
+            .password("password12A")
+            .username("userrrrr3")
             .build();
         mockMvc.perform(post(UserController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -53,10 +53,24 @@ public class UserControllerIT extends BaseIT{
     }
 
     @Test
+    void shouldNotCreateUser() throws Exception {
+        UserDto userDto = UserDto.builder()
+                .email("email3")
+                .password("password")
+                .username("user3")
+                .build();
+        mockMvc.perform(post(UserController.BASE_URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(userDto))
+        )
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void shouldUpdateUserProfileWithUserRole() throws Exception {
 
         mockMvc.perform(put(UserController.BASE_URL)
-                .with(httpBasic("user","password"))
+                .with(httpBasic("username","password12A"))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(userDto))
         )
@@ -97,7 +111,7 @@ public class UserControllerIT extends BaseIT{
     @Test
     void shouldNotDeleteUserUserRole() throws Exception {
         mockMvc.perform(delete(UserController.BASE_URL + "/2")
-                .with(httpBasic("user","password")))
+                .with(httpBasic("username","password12A")))
                 .andExpect(status().isForbidden());
     }
 
