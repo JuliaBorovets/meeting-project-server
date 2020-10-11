@@ -17,7 +17,7 @@ INSERT INTO user_profile(id) VALUES (2);
 INSERT INTO user_profile(id) VALUES (3);
 
 INSERT INTO user(id, email, password, username, profile_id)
-VALUES (1, 'user@gmail.com', '$2a$10$NpHWcrcJIre4NdHow0G4Nuo19ZkMNw5BHd/2JwtJUrevcxvJ3dSw2', 'user', 1);
+VALUES (1, 'user@gmail.com', '$2a$10$xcpC5sh9gHsDUONqFA3g.OaH/xYCsHcjzabcGqG0lrE.eW5ME4N7i', 'username', 1);
 
 INSERT INTO user(id, email, password, username, profile_id)
 VALUES (2, 'user2@gmail.com', '$2a$10$NpHWcrcJIre4NdHow0G4Nuo19ZkMNw5BHd/2JwtJUrevcxvJ3dSw2', 'user2', 2);
